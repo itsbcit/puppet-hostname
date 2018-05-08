@@ -5,4 +5,7 @@
 # @example
 #   include hostname
 class hostname {
+  case $facts['os']['name'] {
+    default: { fail("Unsupported OS name: \'${facts['os']['name']}\'")}
+  }
 }
