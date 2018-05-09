@@ -42,7 +42,7 @@ class hostname {
 
   # hostnamectl can't be set in docker
   if ( $facts['virtual'] == 'docker' ) {
-    warn('Setting hostname in docker containers is not supported.')
+    warning('Setting hostname in docker containers is not supported.')
     include ::hostname::method::noop
   }
   # RedHat family version 6 and earlier use a simple /etc/hostname file with no control program
