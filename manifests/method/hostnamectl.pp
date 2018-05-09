@@ -7,6 +7,6 @@
 class hostname::method::hostnamectl {
   exec { 'set-hostname':
     command => "/usr/bin/hostnamectl set-hostname ${::clientcert}",
-    unless  => '/usr/bin/test `hostname` = `/bin/cat /etc/hostname`',
+    unless  => "/usr/bin/test `hostname` = \"${::clientcert}\"",
   }
 }
