@@ -27,7 +27,7 @@ class hostname {
           8: { $os_codename = 'Jessie' }
           9: { $os_codename = 'Stretch' }
           default: {
-            warn("Unknown Debian version: ${major}.")
+            notice("Unknown Debian version: ${major}.")
             $os_codename = "debian-${major}"
           }
         }
@@ -42,7 +42,7 @@ class hostname {
 
   # hostnamectl can't be set in docker
   if ( $facts['virtual'] == 'docker' ) {
-    warning('Setting hostname in docker containers is not supported.')
+    notice('Setting hostname in docker containers is not supported.')
     include ::hostname::method::noop
   }
   # RedHat family version 6 and earlier use a simple /etc/hostname file with no control program
