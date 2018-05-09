@@ -40,10 +40,14 @@ class hostname {
     fail('Host name cannot be \"localhost\". Use --certname for Puppet client registration.')
   }
 
+  # hostnamectl can;t be used in docker because dbus and systemd aren't running
+  if ( $facts['virtual'] == 'docker' ) {
+    include ::hostname::method::file_exec
+  }
   # RedHat family version 6 and earlier use a simple /etc/hostname file with no control program
   # Fedora has its own numbering system, so we exclude it from the rest of the Red Hat family
   # ASSUMPTION: this code assumes no EOL Fedora versions
-  if ( $os_name == 'Fedora' ) {
+  elsif ( $os_name == 'Fedora' ) {
     include ::hostname::method::hostnamectl
   }
   elsif ( ($family == 'RedHat') and ($major <= 6) ) {
