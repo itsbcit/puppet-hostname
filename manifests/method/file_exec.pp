@@ -3,8 +3,8 @@
 # @summary A short summary of the purpose of this class
 #
 # @example
-#   include hostname::method::file
-class hostname::method::file {
+#   include hostname::method::file_exec
+class hostname::method::file_exec {
 
   file { '/etc/hostname':
     ensure  => present,
