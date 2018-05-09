@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'hostname::method::file' do
+describe 'hostname::method::file_exec' do
   on_supported_os.each do |os, os_facts|
     context "on #{os}" do
       let(:facts) { os_facts }
